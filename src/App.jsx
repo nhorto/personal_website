@@ -1,6 +1,5 @@
 // src/App.jsx
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
+import React, { useState } from 'react';
 import { SiPython } from 'react-icons/si';
 import { SiJavascript } from 'react-icons/si';
 import { SiEsri } from "react-icons/si";
@@ -219,6 +218,55 @@ const ThemeStyles = () => (
       border-color: var(--accent);
     }
 
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+      font-family: inherit;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-button {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      color: #000;
+      border: none;
+      padding: 0.9rem 1.3rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      font-family: inherit;
+    }
+    .form-button:hover {
+      transform: translateY(-2px);
+    }
+    .form-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
@@ -240,89 +288,12 @@ const ThemeStyles = () => (
   `}</style>
 );
 
-// ====== Responsive Three.js Particles (rendered BELOW hero as requested) ======
-const ParticleField = () => {
-  const mountRef = useRef(null);
-  const rafRef = useRef(null);
-  const sceneRef = useRef({});
-
-  useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
-
-    // Renderer sized to container
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    mount.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
-    camera.position.z = 2.2;
-
-    // Points
-    const particleCount = 1500;
-    const positions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-      const angle = (i / particleCount) * Math.PI * 2 * 5;
-      const radius = 0.5 + Math.random() * 0.8;
-      const height = (Math.random() - 0.5) * 1.5;
-      positions[i3]     = Math.cos(angle) * radius + (Math.random() - 0.5) * 0.3;
-      positions[i3 + 1] = height + Math.sin(angle * 3) * 0.2;
-      positions[i3 + 2] = Math.sin(angle) * radius * 0.3 + (Math.random() - 0.5) * 0.3;
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const material = new THREE.PointsMaterial({
-      color: 0x7BAFD4, // UNC blue
-      size: 0.02,
-      transparent: true,
-      opacity: 0.9,
-    });
-    const points = new THREE.Points(geometry, material);
-    scene.add(points);
-
-    // Resize handler
-    const resize = () => {
-      const { clientWidth, clientHeight } = mount;
-      const h = Math.max(220, Math.min(420, Math.floor(clientWidth * 0.35)));
-      renderer.setSize(clientWidth, h);
-      camera.aspect = clientWidth / h;
-      camera.updateProjectionMatrix();
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const animate = () => {
-      points.rotation.y += 0.004;
-      points.rotation.x += 0.0015;
-      renderer.render(scene, camera);
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    animate();
-
-    // cleanup
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('resize', resize);
-      mount.removeChild(renderer.domElement);
-      geometry.dispose(); material.dispose(); renderer.dispose();
-      sceneRef.current = {};
-    };
-  }, []);
-
-  // Full width, auto height
-  return <div ref={mountRef} style={{ width: '100%', marginTop: '1.25rem' }} />;
-};
-
 // ====== Skills/Technologies Matrix ======
 const SkillsMatrix = () => {
   const skillCategories = {
     'Languages': ['Python', 'JavaScript', 'R', 'SQL', 'TypeScript'],
     'ML/AI': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'],
     'GIS/Spatial': ['ArcGIS', 'QGIS', 'PostGIS', 'GDAL', 'Leaflet'],
-    'Cloud/DevOps': ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'MLflow'],
-    'Databases': ['PostgreSQL', 'MongoDB', 'Redis', 'BigQuery', 'Elasticsearch'],
     'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React']
   };
 
@@ -428,6 +399,116 @@ const TimelineItem = ({ position, company, period, points, index }) => {
   );
 };
 
+// ====== Contact Form Component ======
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      const response = await fetch('https://formspree.io/f/xblkbldw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="What's your name?"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="What's your email?"
+            required
+          />
+        </div>
+      </div>
+      <div className="form-group">
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className="form-textarea"
+          placeholder="What do you want to say?"
+          required
+        />
+      </div>
+      
+      {submitStatus === 'success' && (
+        <div style={{ color: 'var(--accent)', marginBottom: '1rem', textAlign: 'center' }}>
+          Thank you! Your message has been sent successfully.
+        </div>
+      )}
+      
+      {submitStatus === 'error' && (
+        <div style={{ color: '#ff6b6b', marginBottom: '1rem', textAlign: 'center' }}>
+          Sorry, there was an error sending your message. Please try again.
+        </div>
+      )}
+      
+      <button 
+        type="submit" 
+        className="form-button"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
+  );
+};
+
 // ====== Page ======
 export default function App() {
   const skills = [
@@ -445,10 +526,6 @@ export default function App() {
     { 
       title: 'Geospatial Expertise', 
       items: ['Remote Sensing', 'Spatial Statistics', 'Cartographic Design', 'Location Intelligence', 'GPS/Survey Data']
-    },
-    { 
-      title: 'Industry Applications',
-      items: ['Healthcare Analytics', 'Urban Planning', 'Environmental Monitoring', 'Business Intelligence', 'Risk Assessment']
     }
   ];
 
@@ -464,10 +541,10 @@ export default function App() {
       company: 'United States Marine Corps',
       period: 'Nov 2018 - Nov 2023',
       points: [
-        'did things',
-        'did more things',
-        'did more more things',
-        'did more more more things',
+        'Collected, processed, and analyzed geospatial, topographic, and multispectral imagery datasets to support terrain and hydrographic assessments.',
+        'Developed custom Python scripts and geoprocessing tools to automate data cleaning, spatial analysis, and visualization, reducing processing time and improving analytical accuracy.',
+        'Designed and delivered map-based visualizations, dashboards, and statistical reports to stakeholders, translating complex geospatial datasets into actionable insights for mission planning.',
+        'Applied cartographic and GIS techniques to generate accurate and detailed topographic maps, supporting operational risk assessments.'
       ],
     },
     {
@@ -475,10 +552,12 @@ export default function App() {
       company: 'EpochGeo',
       period: 'Nov 2023 - Present',
       points: [
-        'did things',
-        'did more things',
-        'did more more things',
-        'did more more more things',
+        'Conduct EDA, regression analysis, principal component analysis (PCA), and feature engineering on datasets containing millions of geospatial points and polygons.',
+        'Extract, clean, and analyze data from SQL/PostgreSQL databases using Python (pandas, NumPy, matplotlib, seaborn, scikit-learn) and geospatial libraries (ArcGIS Pro, GeoPandas, Shapely).',
+        'Collaborate with ML engineers to test, validate, and optimize supervised learning models, improving predictive accuracy and reliability.',
+        'Identify and integrate new geospatial and temporal datasets into data pipelines to enhance model performance.',
+        'Create geospatial dashboards, interactive maps, and visual reports to communicate findings to technical and non-technical stakeholders.',
+        'Recognized for contributions that directly led to securing an additional contract position, expanding team capacity and increasing company revenue.'
       ],
     },
   ];
@@ -505,7 +584,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* ===== Hero (photo + signature, particles BELOW) ===== */}
+      {/* ===== Hero ===== */}
       <section className="section fullheight" id="home">
         <div className="hero">
           <div>
@@ -514,9 +593,6 @@ export default function App() {
             <p className="intro">
               GIS Developer turned Data Scientist. I tailor and implement data-driven solutions to help breakthrough domains.
             </p>
-
-            {/* particles live under the intro/photo per request */}
-            <ParticleField />
           </div>
 
           <div className="portrait-wrap">
@@ -592,19 +668,21 @@ export default function App() {
             <div style={{ 
               width: 80, 
               height: 80, 
-              background: 'var(--accent-soft)', 
+              background: 'linear-gradient(135deg, var(--accent-soft), var(--accent))', 
               borderRadius: '50%', 
               margin: '0 auto 1rem auto',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '2px solid var(--border)'
+              border: '2px solid var(--border)',
+              fontSize: '1.5rem',
+              fontWeight: 'bold'
             }}>
-              <span style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 'bold' }}>LOGO</span>
+              MS
             </div>
             <h3 style={{ color: 'var(--accent)', margin: '0 0 0.5rem 0' }}>Master of Science</h3>
             <h4 style={{ margin: '0 0 0.5rem 0' }}>Geographic Information Systems</h4>
-            <p style={{ color: 'var(--muted)', margin: '0 0 1rem 0' }}>Northwest Missori State University • 2023</p>
+            <p style={{ color: 'var(--muted)', margin: '0 0 1rem 0' }}>Northwest Missouri State University • 2023</p>
             <p style={{ color: '#d7e0ea', fontSize: '0.9rem', lineHeight: 1.5 }}>
               Advanced coursework in spatial analysis, image processing, and geospatial data processing.
             </p>
@@ -614,15 +692,17 @@ export default function App() {
             <div style={{ 
               width: 80, 
               height: 80, 
-              background: 'var(--accent-soft)', 
+              background: 'linear-gradient(135deg, var(--accent-soft), var(--accent))', 
               borderRadius: '50%', 
               margin: '0 auto 1rem auto',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              border: '2px solid var(--border)'
+              border: '2px solid var(--border)',
+              fontSize: '1.5rem',
+              fontWeight: 'bold'
             }}>
-              <span style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 'bold' }}>LOGO</span>
+              MS
             </div>
             <h3 style={{ color: 'var(--accent)', margin: '0 0 0.5rem 0' }}>Master of Science</h3>
             <h4 style={{ margin: '0 0 0.5rem 0' }}>Data Science</h4>
@@ -646,46 +726,9 @@ export default function App() {
       <section className="section" id="contact">
         <h2 className="section-title">Contact</h2>
         <div className="card" style={{ padding: '2rem', maxWidth: 800, margin: '0 auto' }}>
-          <form onSubmit={(e)=>e.preventDefault()}>
-            <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
-              <div>
-                <label>Name</label>
-                <input style={inputStyle} type="text" placeholder="What's your name?" />
-              </div>
-              <div>
-                <label>Email</label>
-                <input style={inputStyle} type="email" placeholder="What's your email?" />
-              </div>
-            </div>
-            <div style={{ marginTop: '1rem' }}>
-              <label>Message</label>
-              <textarea style={{ ...inputStyle, minHeight: 120 }} placeholder="What do you want to say?" />
-            </div>
-            <button type="submit" style={buttonStyle}>send</button>
-          </form>
+          <ContactForm />
         </div>
       </section>
     </div>
   );
 }
-
-// simple inline control styles
-const inputStyle = {
-  width: '100%',
-  padding: '0.85rem 1rem',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  borderRadius: 10,
-  color: 'var(--text)',
-  outline: 'none'
-};
-const buttonStyle = {
-  marginTop: '1rem',
-  background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%)',
-  color: '#000',
-  border: 'none',
-  padding: '0.9rem 1.3rem',
-  borderRadius: 10,
-  fontWeight: 700,
-  cursor: 'pointer'
-};
