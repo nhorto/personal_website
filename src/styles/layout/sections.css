@@ -1,0 +1,19 @@
+/* src/styles/layout/sections.css */
+.section {
+  padding: 5rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section.fullheight {
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+}
+
+.section-title {
+  font-size: clamp(2rem, 2.5vw, 2.5rem);
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+}

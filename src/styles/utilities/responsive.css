@@ -1,0 +1,33 @@
+/* src/styles/utilities/responsive.css */
+@media (max-width: 900px) {
+  .hero { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .portrait-wrap { 
+    order: -1; 
+  }
+  
+  .header-inner { 
+    padding: 0.5rem 1rem; 
+  }
+  
+  .nav { 
+    gap: 0.75rem; 
+  }
+  
+  .divider { 
+    display: none; 
+  }
+  
+  .timeline-item:nth-child(even) .timeline-card,
+  .timeline-item:nth-child(odd) .timeline-card {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .timeline-item .timeline-content {
+    justify-content: center !important;
+  }
+}

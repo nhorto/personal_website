@@ -1,0 +1,42 @@
+/* src/styles/globals.css */
+:root {
+  /* UNC Chapel Hill palette */
+  --bg: #0b0d12;                /* deep charcoal background */
+  --bg-soft: #10131a;
+  --text: #ffffff;
+  --muted: #cbd5e1;
+  --accent: #7BAFD4;            /* UNC blue */
+  --accent-strong: #4D9FD0;     /* slightly deeper UNC blue */
+  --accent-soft: rgba(123,175,212,0.2);
+  --card: rgba(28, 32, 44, 0.8);
+  --border: rgba(123,175,212,0.28);
+}
+
+* { 
+  box-sizing: border-box; 
+}
+
+html, body, #root { 
+  height: 100%; 
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
+
+.app {
+  min-height: 100vh;
+  width: 100vw;
+  background:
+    radial-gradient(1100px 600px at 10% 100%, #0f1420 0%, var(--bg) 60%),
+    radial-gradient(900px 500px at 80% -10%, #0e1727 0%, var(--bg) 55%);
+}

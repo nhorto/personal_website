@@ -1,292 +1,20 @@
 // src/App.jsx
 import React, { useState } from 'react';
-import { SiPython } from 'react-icons/si';
-import { SiJavascript } from 'react-icons/si';
-import { SiEsri } from "react-icons/si";
-import { SiScikitlearn } from "react-icons/si";
+import { SiPython, SiJavascript, SiEsri, SiScikitlearn } from 'react-icons/si';
 
+// Import CSS files
+import './styles/globals.css';
+import './styles/layout/sections.css';
+import './styles/components/Header.css';
+import './styles/components/Hero.css';
+import './styles/components/Cards.css';
+import './styles/components/Timeline.css';
+import './styles/components/Forms.css';
+import './styles/utilities/responsive.css';
 
 // ====== ASSETS (update filenames as needed) ======
-import portraitImg from './assets/4.jpeg';
+import portraitImg from './assets/one.jpeg';
 import signatureImg from './assets/Nicholas-Horton-white-high-res.png';
-
-// ====== THEME (CSS variables for quick color swaps) ======
-const ThemeStyles = () => (
-  <style>{`
-    :root {
-      /* UNC Chapel Hill palette */
-      --bg: #0b0d12;                /* deep charcoal background */
-      --bg-soft: #10131a;
-      --text: #ffffff;
-      --muted: #cbd5e1;
-      --accent: #7BAFD4;            /* UNC blue */
-      --accent-strong: #4D9FD0;     /* slightly deeper UNC blue */
-      --accent-soft: rgba(123,175,212,0.2);
-      --card: rgba(28, 32, 44, 0.8);
-      --border: rgba(123,175,212,0.28);
-    }
-
-    * { box-sizing: border-box; }
-    html, body, #root { height: 100%; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .app {
-      min-height: 100vh;
-      width: 100vw;
-      background:
-        radial-gradient(1100px 600px at 10% 100%, #0f1420 0%, var(--bg) 60%),
-        radial-gradient(900px 500px at 80% -10%, #0e1727 0%, var(--bg) 55%);
-    }
-
-    /* ===== Header ===== */
-    .header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(11,13,18,0.85) 0%, rgba(11,13,18,0.55) 100%);
-      border-bottom: 1px solid var(--border);
-      z-index: 50;
-    }
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.75rem 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand img.signature {
-      height: 96px;
-      width: auto;
-      display: block;
-      filter: drop-shadow(0 2px 8px rgba(123,175,212,0.35));
-    }
-    .nav {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-    }
-    .nav a {
-      color: var(--muted);
-      padding: 0.4rem 0.65rem;
-      border-radius: 8px;
-      transition: 200ms ease;
-      border: 1px solid transparent;
-    }
-    .nav a:hover {
-      color: var(--text);
-      border-color: var(--border);
-      background: rgba(123,175,212,0.08);
-    }
-    .divider {
-      color: var(--muted);
-      opacity: 0.6;
-      margin: 0 0.5rem;
-      user-select: none;
-    }
-
-    /* ===== Sections ===== */
-    .section {
-      padding: 5rem 5%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .section.fullheight {
-      min-height: 100vh;
-      display: grid;
-      align-items: center;
-    }
-    .section-title {
-      font-size: clamp(2rem, 2.5vw, 2.5rem);
-      text-align: center;
-      color: var(--accent);
-      margin-bottom: 2.5rem;
-    }
-
-    /* ===== Hero ===== */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .headline {
-      font-size: clamp(2.6rem, 7vw, 5rem);
-      line-height: 1.05;
-      font-weight: 800;
-      margin: 0 0 0.75rem 0;
-      background: linear-gradient(45deg, #fff 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .tagline {
-      font-size: 1.25rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    .intro {
-      color: #d7e0ea;
-      line-height: 1.6;
-      max-width: 48ch;
-    }
-
-    .portrait-wrap {
-      justify-self: center;
-      display: grid;
-      place-items: center;
-      gap: 0.75rem;
-    }
-    .portrait {
-      width: clamp(240px, 32vw, 360px);
-      aspect-ratio: 1/1;
-      border-radius: 18px;
-      object-fit: cover;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-      border: 1px solid var(--border);
-    }
-    .sig-under {
-      width: clamp(320px, 18vw, 500px);
-      opacity: 0.95;
-      filter: drop-shadow(0 2px 8px rgba(123,175,212,0.25));
-    }
-
-    /* ===== Cards / common ===== */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* Keep your previous components styling but swap colors to variables */
-    .skill-card { 
-      padding: 2rem; 
-      cursor: pointer; 
-      transition: 200ms ease;
-      text-align: center;
-    }
-    .skill-card:hover { transform: translateY(-6px); }
-    .tech-tag {
-      background: var(--accent-soft);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.8rem;
-      border-radius: 18px;
-      font-size: 0.85rem;
-    }
-    .project-card { padding: 2rem; transition: 250ms ease; }
-    .project-card:hover { transform: translateY(-6px); border-color: rgba(123,175,212,0.55); }
-
-    .timeline::before {
-      background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-    .timeline-marker { background: var(--accent); border: 4px solid var(--bg); }
-
-    .timeline-item:nth-child(even) .timeline-content {
-      justify-content: flex-start;
-    }
-    .timeline-item:nth-child(even) .timeline-card {
-      margin-left: 55%;
-    }
-    .timeline-item:nth-child(odd) .timeline-card {
-      margin-right: 55%;
-    }
-
-    .project-link {
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.55rem 0.9rem;
-      border-radius: 10px;
-      transition: 200ms ease;
-    }
-    .project-link:hover {
-      background: rgba(123,175,212,0.08);
-      border-color: var(--accent);
-    }
-
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 1rem;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-      font-weight: 500;
-    }
-    .form-input, .form-textarea {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s ease;
-      font-family: inherit;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: var(--accent);
-    }
-    .form-textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    .form-button {
-      margin-top: 1rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-      color: #000;
-      border: none;
-      padding: 0.9rem 1.3rem;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      font-family: inherit;
-    }
-    .form-button:hover {
-      transform: translateY(-2px);
-    }
-    .form-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .portrait-wrap { order: -1; }
-      .header-inner { padding: 0.5rem 1rem; }
-      .nav { gap: 0.75rem; }
-      .divider { display: none; }
-      
-      .timeline-item:nth-child(even) .timeline-card,
-      .timeline-item:nth-child(odd) .timeline-card {
-        margin-left: 0;
-        margin-right: 0;
-        width: 100%;
-      }
-      .timeline-item .timeline-content {
-        justify-content: center !important;
-      }
-    }
-  `}</style>
-);
 
 // ====== Skills/Technologies Matrix ======
 const SkillsMatrix = () => {
@@ -331,7 +59,6 @@ const SkillsMatrix = () => {
   );
 };
 
-// ====== Reusable bits from your previous file (trimmed where unchanged) ======
 const SkillCard = ({ title, subtitle, icon }) => {
   const [hover, setHover] = useState(false);
   return (
@@ -368,22 +95,12 @@ const TimelineItem = ({ position, company, period, points, index }) => {
   const isEven = index % 2 === 0;
   
   return (
-    <div className="timeline-item" style={{ margin: '3rem 0', position: 'relative' }}>
+    <div className="timeline-item">
       <div className="timeline-content" style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
         justifyContent: isEven ? 'flex-end' : 'flex-start' 
       }}>
-        <div className="timeline-marker" style={{
-          position: 'absolute', left: '50%', width: 20, height: 20, borderRadius: '50%', 
-          transform: 'translateX(-50%)', zIndex: 2, background: 'var(--accent)', 
-          border: '4px solid var(--bg)'
-        }} />
+        <div className="timeline-marker" />
         <div className="card timeline-card" style={{
-          width: '45%', 
-          padding: '1.5rem', 
-          borderRadius: 15, 
-          border: '1px solid var(--border)',
           marginLeft: isEven ? 0 : '55%',
           marginRight: isEven ? '55%' : 0
         }}>
@@ -399,7 +116,6 @@ const TimelineItem = ({ position, company, period, points, index }) => {
   );
 };
 
-// ====== Contact Form Component ======
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -509,7 +225,6 @@ const ContactForm = () => {
   );
 };
 
-// ====== Page ======
 export default function App() {
   const skills = [
     { title: 'Machine Learning', subtitle: 'Predictive modeling & AI systems', icon: <SiScikitlearn size={70}/> },
@@ -564,8 +279,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <ThemeStyles />
-
       {/* ===== Header with signature | nav ===== */}
       <header className="header">
         <div className="header-inner">

@@ -1,0 +1,52 @@
+/* src/styles/components/Hero.css */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.headline {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0 0 0.75rem 0;
+  background: linear-gradient(45deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.intro {
+  color: #d7e0ea;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+.portrait-wrap {
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
+}
+
+.portrait {
+  width: clamp(240px, 32vw, 360px);
+  aspect-ratio: 1/1;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  border: 1px solid var(--border);
+}
+
+.sig-under {
+  width: clamp(320px, 18vw, 500px);
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 8px rgba(123,175,212,0.25));
+}

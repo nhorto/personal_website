@@ -1,0 +1,50 @@
+/* src/styles/components/Cards.css */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.skill-card { 
+  padding: 2rem; 
+  cursor: pointer; 
+  transition: 200ms ease;
+  text-align: center;
+}
+
+.skill-card:hover { 
+  transform: translateY(-6px); 
+}
+
+.project-card { 
+  padding: 2rem; 
+  transition: 250ms ease; 
+}
+
+.project-card:hover { 
+  transform: translateY(-6px); 
+  border-color: rgba(123,175,212,0.55); 
+}
+
+.tech-tag {
+  background: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.8rem;
+  border-radius: 18px;
+  font-size: 0.85rem;
+}
+
+.project-link {
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  transition: 200ms ease;
+}
+
+.project-link:hover {
+  background: rgba(123,175,212,0.08);
+  border-color: var(--accent);
+}

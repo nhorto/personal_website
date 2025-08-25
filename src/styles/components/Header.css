@@ -1,0 +1,58 @@
+/* src/styles/components/Header.css */
+.header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(11,13,18,0.85) 0%, rgba(11,13,18,0.55) 100%);
+  border-bottom: 1px solid var(--border);
+  z-index: 50;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img.signature {
+  height: 96px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(123,175,212,0.35));
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav a {
+  color: var(--muted);
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  transition: 200ms ease;
+  border: 1px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--text);
+  border-color: var(--border);
+  background: rgba(123,175,212,0.08);
+}
+
+.divider {
+  color: var(--muted);
+  opacity: 0.6;
+  margin: 0 0.5rem;
+  user-select: none;
+}
