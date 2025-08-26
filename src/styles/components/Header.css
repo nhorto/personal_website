@@ -51,8 +51,16 @@
 }
 
 .divider {
+  size: extra-large;
   color: var(--muted);
   opacity: 0.6;
   margin: 0 0.5rem;
   user-select: none;
+}
+
+/* Active state for NavLink */
+.nav a.active {
+  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
 }
