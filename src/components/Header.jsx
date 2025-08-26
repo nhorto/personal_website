@@ -17,10 +17,10 @@ export default function Header() {
             Home
           </NavLink>
           <NavLink to="/About" className={({ isActive }) => (isActive ? 'active' : undefined)}>
-            Projects
+            About
           </NavLink>
           <NavLink to="/Projects" className={({ isActive }) => (isActive ? 'active' : undefined)}>
-            Contact
+            Projects
           </NavLink>
         </nav>
       </div>
