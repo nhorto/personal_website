@@ -1,10 +1,11 @@
-// src/App.jsx
+// src/pages/Home.jsx - FINAL FIXED VERSION
 import React, { useState } from 'react';
 import { SiPython, SiJavascript, SiEsri, SiScikitlearn } from 'react-icons/si';
 
 // Import CSS files
 import '../styles/globals.css';
 import '../styles/layout/sections.css';
+import '../styles/layout/grid.css';  // Make sure this is imported
 import '../styles/components/Header.css';
 import '../styles/components/Hero.css';
 import '../styles/components/Cards.css';
@@ -27,17 +28,12 @@ const SkillsMatrix = () => {
 
   return (
     <div style={{ marginTop: '3rem' }}>
-      <h2 style={{ textAlign: 'center', color: 'var(--accent)', marginBottom: '0.5rem' }}>
-        Tools &amp; Technologies
-      </h2>
+      <h2 className="section-title">Tools &amp; Technologies</h2>
       <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
         The stack I use day to day
       </p>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '1.5rem'
-      }}>
+      {/* Using the grid class from grid.css */}
+      <div className="consistent-grid">
         {Object.entries(skillCategories).map(([category, skills]) => (
           <div key={category} className="card" style={{ padding: '1.5rem' }}>
             <h4 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', textAlign: 'center' }}>
@@ -306,13 +302,9 @@ export default function Home() {
         <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
           Blending data science and GIS to deliver outcomes
         </p>
-        {/* Core Skills */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '3rem'
-        }}>
+        
+        {/* Core Skills - Using grid class */}
+        <div className="grid-skills">
           {skills.map((s, i) => <SkillCard key={i} {...s} />)}
         </div>
 
@@ -321,12 +313,7 @@ export default function Home() {
         <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
           Experience across data science and geospatial technologies
         </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '2rem'
-        }}>
+        <div className="consistent-grid" style={{ marginBottom: '2rem' }}>
           {specializations.map((spec, i) => (
             <div key={i} className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <h3 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', fontSize: '1.1rem' }}>
@@ -367,7 +354,7 @@ export default function Home() {
       {/* ===== Education ===== */}
       <section className="section" id="education">
         <h2 className="section-title">Education</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem', maxWidth: 900, margin: '0 auto' }}>
+        <div className="grid-education">
           <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
             <div style={{ 
               width: 80, 
@@ -421,7 +408,7 @@ export default function Home() {
       {/* ===== Projects ===== */}
       <section className="section" id="projects">
         <h2 className="section-title">Featured Projects</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
+        <div className="grid-projects">
           {projects.map((p, i) => <ProjectCard key={i} {...p} />)}
         </div>
       </section>

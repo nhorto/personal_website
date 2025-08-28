@@ -1,35 +1,48 @@
-/* src/styles/layout/grid.css */
+/* src/styles/layout/grid.css - UPDATED VERSION */
 
 /* Grid utilities that you can reuse across pages */
 .grid-auto-fit {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .grid-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .grid-three-col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .grid-skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem auto;
+  max-width: 1200px;
+  justify-content: center;
 }
 
 .grid-projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .grid-education {
@@ -38,6 +51,17 @@
   gap: 1.5rem;
   max-width: 900px;
   margin: 0 auto;
+  justify-content: center;
+}
+
+/* NEW: Consistent grid class for uniform cards */
+.consistent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 /* Flexbox utilities */
@@ -57,4 +81,5 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: center;
 }

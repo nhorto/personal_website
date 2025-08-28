@@ -1,8 +1,9 @@
-/* src/styles/layout/sections.css */
+/* src/styles/layout/sections.css - UPDATED VERSION */
 .section {
   padding: 5rem 5%;
-  max-width: 1200px;
+  max-width: 1400px; /* Increased for better spacing */
   margin: 0 auto;
+  width: 100%;
 }
 
 .section.fullheight {
@@ -16,4 +17,11 @@
   text-align: center;
   color: var(--accent);
   margin-bottom: 2.5rem;
+}
+
+/* NEW: Section content wrapper for better control */
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
