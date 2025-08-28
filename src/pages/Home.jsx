@@ -19,30 +19,33 @@ import signatureImg from '../assets/Nicholas-Horton-white-high-res.png';
 // ====== Skills/Technologies Matrix ======
 const SkillsMatrix = () => {
   const skillCategories = {
-    'Languages': ['Python', 'JavaScript', 'R', 'SQL', 'TypeScript'],
+    'Languages': ['Python', 'JavaScript', 'R', 'SQL', 'Julia'],
     'ML/AI': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'],
-    'GIS/Spatial': ['ArcGIS', 'QGIS', 'PostGIS', 'GDAL', 'Leaflet'],
+    'GIS/Spatial': ['ArcGIS', 'QGIS', 'Leaflet', 'Geopandas', 'Shapely'],
     'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React']
   };
 
   return (
     <div style={{ marginTop: '3rem' }}>
-      <h3 style={{ textAlign: 'center', color: 'var(--accent)', marginBottom: '2rem', fontSize: '1.5rem' }}>
-        Technical Stack
-      </h3>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '1.5rem' 
+      <h2 style={{ textAlign: 'center', color: 'var(--accent)', marginBottom: '0.5rem' }}>
+        Tools &amp; Technologies
+      </h2>
+      <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+        The stack I use day to day
+      </p>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '1.5rem'
       }}>
         {Object.entries(skillCategories).map(([category, skills]) => (
           <div key={category} className="card" style={{ padding: '1.5rem' }}>
             <h4 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', textAlign: 'center' }}>
               {category}
             </h4>
-            <div style={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
               gap: '0.5rem',
               justifyContent: 'center'
             }}>
@@ -299,8 +302,10 @@ export default function Home() {
 
       {/* ===== Overview ===== */}
       <section className="section" id="overview">
-        <h2 className="section-title">Overview</h2>
-        
+        <h2 className="section-title">What I Do</h2>
+        <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+          Blending data science and GIS to deliver outcomes
+        </p>
         {/* Core Skills */}
         <div style={{
           display: 'grid',
@@ -312,6 +317,10 @@ export default function Home() {
         </div>
 
         {/* Specializations */}
+        <h2 className="section-title" style={{ marginBottom:'2rem' }}>Focus Areas</h2>
+        <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+          Experience across data science and geospatial technologies
+        </p>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -323,9 +332,9 @@ export default function Home() {
               <h3 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', fontSize: '1.1rem' }}>
                 {spec.title}
               </h3>
-              <div style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', 
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
                 gap: '0.5rem',
                 justifyContent: 'center'
               }}>

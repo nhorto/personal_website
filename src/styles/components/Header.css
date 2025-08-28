@@ -24,7 +24,7 @@
 }
 
 .brand img.signature {
-  height: 96px;
+  height: 60px;
   width: auto;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(123,175,212,0.35));
@@ -51,7 +51,7 @@
 }
 
 .divider {
-  size: extra-large;
+  font-size: 40px;
   color: var(--muted);
   opacity: 0.6;
   margin: 0 0.5rem;

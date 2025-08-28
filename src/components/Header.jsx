@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import signatureImg from '../assets/Nicholas-Horton-white-high-res.png';
 import '../styles/components/Header.css';
+import initials_updated from '../assets/initials_update.png';
 
 export default function Header() {
   return (
     <header className="header">
       <div className="header-inner">
         <div className="brand">
-          <img className="signature" src={signatureImg} alt="Signature" />
+          <img className="signature" src={initials_updated} alt="Signature"/>
           <span className="divider">|</span>
           <span style={{ color: 'var(--muted)', fontSize: 18 }}>Data Scientist</span>
         </div>
