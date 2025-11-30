@@ -23,11 +23,11 @@ const SkillsMatrix = () => {
     'Languages': ['Python', 'JavaScript', 'R', 'SQL', 'Julia'],
     'ML/AI': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'],
     'GIS/Spatial': ['ArcGIS', 'QGIS', 'Leaflet', 'Geopandas', 'Shapely'],
-    'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React']
+    'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React, Next.js']
   };
 
   return (
-    <div style={{ marginTop: '3rem' }}>
+    <div className="reveal" style={{ marginTop: '3rem' }}>
       <h2 className="section-title">Tools &amp; Technologies</h2>
       <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
         The stack I use day to day
@@ -35,7 +35,7 @@ const SkillsMatrix = () => {
       {/* Using the grid class from grid.css */}
       <div className="consistent-grid">
         {Object.entries(skillCategories).map(([category, skills]) => (
-          <div key={category} className="card" style={{ padding: '1.5rem' }}>
+          <div key={category} className="card reveal" style={{ padding: '1.5rem' }}>
             <h4 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', textAlign: 'center' }}>
               {category}
             </h4>
@@ -62,7 +62,7 @@ const SkillCard = ({ title, subtitle, icon }) => {
   const [hover, setHover] = useState(false);
   return (
     <div
-      className="card skill-card"
+      className="card skill-card reveal"
       style={{
         background: hover ? 'rgba(22,28,40,0.95)' : undefined,
         borderColor: hover ? 'rgba(123,175,212,0.48)' : undefined,
@@ -81,7 +81,7 @@ const SkillCard = ({ title, subtitle, icon }) => {
 };
 
 const ProjectCard = ({ title, description, tech }) => (
-  <div className="card project-card">
+  <div className="card project-card reveal">
     <h3 style={{ color: 'var(--accent)', marginTop: 0 }}>{title}</h3>
     <p style={{ color: '#d7e0ea' }}>{description}</p>
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -99,7 +99,7 @@ const TimelineItem = ({ position, company, period, points, index }) => {
         justifyContent: isEven ? 'flex-end' : 'flex-start' 
       }}>
         <div className="timeline-marker" />
-        <div className="card timeline-card" style={{
+        <div className="card timeline-card reveal" style={{
           marginLeft: isEven ? 0 : '55%',
           marginRight: isEven ? '55%' : 0
         }}>
@@ -227,19 +227,19 @@ const ContactForm = () => {
 export default function Home() {
   const skills = [
     { title: 'Machine Learning', subtitle: 'Predictive modeling & AI systems', icon: <SiScikitlearn size={70}/> },
-    { title: 'Python Development', subtitle: 'Data pipelines & automation', icon: <SiPython size={70}/> },
-    { title: 'Geospatial Analysis', subtitle: 'Spatial data & mapping solutions', icon: <SiEsri size={70}/> },
-    { title: 'Data Engineering', subtitle: 'ETL & data infrastructure', icon: <SiJavascript size={70}/> },
+    { title: 'Python Development', subtitle: 'Data Science, automation & scripting', icon: <SiPython size={70}/> },
+    { title: 'Geospatial Analysis', subtitle: 'Spatial modeling, mapping & remote sensing', icon: <SiEsri size={70}/> },
+    { title: 'JavaScript & Frontend', subtitle: 'UI & data visualization', icon: <SiJavascript size={70}/> },
   ];
 
   const specializations = [
     { 
       title: 'Data Science Specializations',
-      items: ['Predictive Analytics', 'Statistical Modeling', 'Time Series Analysis', 'A/B Testing', 'Feature Engineering']
+      items: ['Predictive Analytics', 'Statistical Modeling', 'Time Series Analysis', 'Exploratory Data Analysis ', 'Feature Engineering', 'Data cleaning & Preprocessing', 'Deep Learning']
     },
     { 
       title: 'Geospatial Expertise', 
-      items: ['Remote Sensing', 'Spatial Statistics', 'Cartographic Design', 'Location Intelligence', 'GPS/Survey Data']
+      items: ['Remote Sensing', 'Spatial Statistics', 'Cartographic Design', 'Location Intelligence', 'Spatio-temporal modeling','Spatio-temporal forecasting']
     }
   ];
 
@@ -277,19 +277,19 @@ export default function Home() {
   ];
 
   return (
-    <div className="app">
+    <main>
       {/* ===== Hero ===== */}
       <section className="section fullheight" id="home">
         <div className="hero">
           <div>
-            <h1 className="headline">Hi, I'm Nick</h1>
-            <p className="tagline">I humanize data</p>
-            <p className="intro">
+            <h1 className="headline reveal">Hi, I'm Nick</h1>
+            <p className="tagline reveal">I humanize data</p>
+            <p className="intro reveal">
               GIS Developer turned Data Scientist. I tailor and implement data-driven solutions to help breakthrough domains.
             </p>
           </div>
 
-          <div className="portrait-wrap">
+          <div className="portrait-wrap reveal">
             <img className="portrait" src={portraitImg} alt="Portrait" />
             <img className="sig-under" src={signatureImg} alt="Signature" />
           </div>
@@ -298,8 +298,8 @@ export default function Home() {
 
       {/* ===== Overview ===== */}
       <section className="section" id="overview">
-        <h2 className="section-title">What I Do</h2>
-        <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+        <h2 className="section-title reveal">What I Do</h2>
+        <p className="reveal" style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
           Blending data science and GIS to deliver outcomes
         </p>
         
@@ -309,13 +309,13 @@ export default function Home() {
         </div>
 
         {/* Specializations */}
-        <h2 className="section-title" style={{ marginBottom:'2rem' }}>Focus Areas</h2>
-        <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+        <h2 className="section-title reveal" style={{ marginBottom:'2rem' }}>Focus Areas</h2>
+        <p className="reveal" style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
           Experience across data science and geospatial technologies
         </p>
         <div className="consistent-grid" style={{ marginBottom: '2rem' }}>
           {specializations.map((spec, i) => (
-            <div key={i} className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div key={i} className="card reveal" style={{ padding: '1.5rem', textAlign: 'center' }}>
               <h3 style={{ color: 'var(--accent)', margin: '0 0 1rem 0', fontSize: '1.1rem' }}>
                 {spec.title}
               </h3>
@@ -341,7 +341,7 @@ export default function Home() {
 
       {/* ===== Experience ===== */}
       <section className="section" id="experience">
-        <h2 className="section-title">Experience</h2>
+        <h2 className="section-title reveal">Experience</h2>
         <div className="timeline" style={{ position: 'relative', maxWidth: 800, margin: '0 auto' }}>
           <div style={{
             content: '""', position: 'absolute', left: '50%', top: 0, bottom: 0,
@@ -353,9 +353,9 @@ export default function Home() {
 
       {/* ===== Education ===== */}
       <section className="section" id="education">
-        <h2 className="section-title">Education</h2>
+        <h2 className="section-title reveal">Education</h2>
         <div className="grid-education">
-          <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+          <div className="card reveal" style={{ padding: '2rem', textAlign: 'center' }}>
             <div style={{ 
               width: 80, 
               height: 80, 
@@ -379,7 +379,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="card" style={{ padding: '2rem', textAlign: 'center' }}>
+          <div className="card reveal" style={{ padding: '2rem', textAlign: 'center' }}>
             <div style={{ 
               width: 80, 
               height: 80, 
@@ -407,7 +407,7 @@ export default function Home() {
 
       {/* ===== Projects ===== */}
       <section className="section" id="projects">
-        <h2 className="section-title">Featured Projects</h2>
+        <h2 className="section-title reveal">Featured Projects</h2>
         <div className="grid-projects">
           {projects.map((p, i) => <ProjectCard key={i} {...p} />)}
         </div>
@@ -415,11 +415,11 @@ export default function Home() {
 
       {/* ===== Contact ===== */}
       <section className="section" id="contact">
-        <h2 className="section-title">Contact</h2>
-        <div className="card" style={{ padding: '2rem', maxWidth: 800, margin: '0 auto' }}>
+        <h2 className="section-title reveal">Contact</h2>
+        <div className="card reveal" style={{ padding: '2rem', maxWidth: 800, margin: '0 auto' }}>
           <ContactForm />
         </div>
       </section>
-    </div>
+    </main>
   );
 }

@@ -4,27 +4,30 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   backdrop-filter: blur(10px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.skill-card { 
-  padding: 2rem; 
-  cursor: pointer; 
-  transition: 200ms ease;
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(123, 175, 212, 0.55);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(123, 175, 212, 0.1);
+}
+
+.skill-card {
+  padding: 2rem;
+  cursor: pointer;
   text-align: center;
 }
 
-.skill-card:hover { 
-  transform: translateY(-6px); 
+.project-card {
+  padding: 2rem;
 }
 
-.project-card { 
-  padding: 2rem; 
-  transition: 250ms ease; 
-}
-
-.project-card:hover { 
-  transform: translateY(-6px); 
-  border-color: rgba(123,175,212,0.55); 
+.project-card:hover {
+  border-color: rgba(123, 175, 212, 0.55);
 }
 
 .tech-tag {

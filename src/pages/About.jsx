@@ -4,6 +4,7 @@ import '../styles/components/Header.css';
 import '../styles/layout/sections.css';
 import usmc from '../assets/usmc.png';
 import Graduation from '../assets/graduation.JPG';
+import im_done from '../assets/im_done.png';
 
 // Optional images (uncomment when ready):
 // import portrait from '../assets/portrait.jpg';
@@ -20,6 +21,7 @@ const styles = {
   },
   title: {
     margin: 0,
+    marginBottom: '2.25rem',
     color: 'var(--accent)',
     fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
     lineHeight: 1.15,
@@ -72,7 +74,7 @@ const styles = {
 
 export default function About() {
   return (
-    <div className="app">
+    <main>
       {/* Scoped typography tweaks for a blog feel */}
       <style>{`
         .about-prose {
@@ -100,14 +102,14 @@ export default function About() {
         <div style={styles.page}>
           
           {/* HERO */}
-          <header style={styles.hero}>
+          <header style={styles.hero} className="reveal">
             <h2 className="section-title" style={styles.title}>About Me</h2>
-            <p style={styles.subtitle}>
+            {/* <p style={styles.subtitle}>
               A brief look at my journey and what drives my work.
-            </p>
+            </p> */}
           </header>
 
-          <article className="about-prose">
+          <article className="about-prose reveal">
             {/* SECTION: After College */}
             <h3 style={styles.sectionHeading}>After Undergrad</h3> {/* className="lead" */}
             <p section="after-college">
@@ -123,20 +125,28 @@ export default function About() {
             {/* SECTION: Marine Corps */}
             <h3 style={styles.sectionHeading}>Becoming a Marine & Discovering GIS</h3>
             <p section="marine-corps">
-              <figure style={styles.figure}>
+              <figure style={styles.figure} className="reveal">
                 <img src={usmc} alt="Caption here" style={styles.image} />
                 {/*<figcaption style={styles.figcaption}>Caption text.</figcaption>*/}
               </figure>
               In 2018, I made the decision to enlist in the Marine Corps. My previous experience as a project manager gave me a solid foundation to succeed in such a challenging environment. When I was told I was going to be a 
               "map maker," I thought of myself sitting at a desk with paper and colored pencils and thankfully I was so wrong! Little did I realize how much I would come to appreciate and enjoy the job and want to continue learning 
               as much as I could. So, in 2021 I took the plunge and started on a Master's program in Geographic Information Science at Northwest Missouri State University. This was a surprising for someone who had sworn they would 
-              never go back to school again. I can remember telling my mom that I would NEVER go back to school. But here I was enrolled in a Masters program that I wasn’t even sure I would get into. I also had to decide how I was 
+              never go back to school again. I can remember telling my mom that I would NEVER go back to school. 
+              <figure style={styles.figure} className="reveal">
+                <img src={im_done} alt="Caption here" style={styles.image} />
+                {/*<figcaption style={styles.figcaption}>Caption text.</figcaption>*/}
+              </figure> 
+              But here I was enrolled in a Masters program that I wasn’t even sure I would get into. I also had to decide how I was 
               going to pay for this sine the Marine Corps would not pay for all of it. Part way through my first year in the program I decided to get a part time job at Chipotle and use their tuition assistance to pay the rest of 
               the bill. And I thought my senior year of college was busy, but I was wishing I could go back to that!! I worked anywhere from 15-25 hours a week there to maintain my eligibility for tuition assistance. After so many 
               late nights, early mornings, and long days I couldn’t wait for it all to be over! But I knew the hard work would pay off in the end. After I graduated I knew that I wanted to go back to school once I got out of the 
               Marine Corps. During my course work, I had gotten a lot more experience with python, and was introduced to statistics and some machine learning. I didnt really know what data science was but after researching it more, 
               I realized that I was already doing some “data science” things we just didnt call it that. This led me to start applying for a masters in data science for the spring of 2023. This also led me to start applying more 
               data science focused jobs in my transition out of the Marine Corps. Finally all of the hard work had paid off and accepted a geospatial data science position in Washington DC. 
+              <p className="pull reveal">
+                “I realized I was already doing data science — we just didn’t call it that.”
+              </p>
             </p>
 
             <hr style={styles.hr} />
@@ -156,17 +166,16 @@ export default function About() {
               While DC was not my preferred destination, the work was exactly where I wanted to be. It was more data science focused and I was learned so much every day. Shortly after I started my new job I also started my new degree 
               and UNC Chapel Hill. This was great timing because I was able to use what I was learning in class and apply it the next day at work. This really helped me progress. Fast forwarding a bit, I finally made it through another 
               degree while working full time. Another long, challenging, but rewarding journey. 
-              <figure style={styles.figure}>
+              <figure style={styles.figure} className="reveal">
                 <img src={Graduation} alt="Caption here" style={styles.image} />
                 {/*<figcaption style={styles.figcaption}>Caption text.</figcaption>*/}
               </figure>
               When I graduated I suddenly had this thing they call “free-time”. I couldn’t even remember what that felt like after working full time and 
               going to school full time for what felt like forever! I quickly realized that I have become addicted to learning and it felt strange not learning a new concept or working on a homework assignment. To fill my time, I 
-              started working on a project that would help me and my girlfriend track the wineries and wines we have tried at different wineries. So I have been learning all I can about React Native and app development. It has been a 
+              started working on a project that would help me and my girlfriend track the wineries and wines we have tried at different wineries. So I have been learning all I can about front end and app development. It has been a 
               slow and sometimes frustrating experience, but I have made lots of progress and finally have a working prototype! After going finishing my degrees and focusing on this project, I have realized that my hobby as become
-              learning and im excited to keep pushing my skills and see wher they take me next. 
+              learning and im excited to keep pushing my skills and see where they take me next. 
             </p>
-
             {/* Signature (optional) */}
             {/* <div style={styles.signatureWrap}>
               <img src={signature} alt="Signature" style={styles.signature} />
@@ -174,6 +183,6 @@ export default function About() {
           </article>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
