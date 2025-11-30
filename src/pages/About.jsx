@@ -2,8 +2,8 @@ import React from 'react';
 import '../styles/globals.css';
 import '../styles/components/Header.css';
 import '../styles/layout/sections.css';
-import usmc from '../assets/usmc.png';
-import Graduation from '../assets/graduation.JPG';
+import usmc from '../assets/USMC.png';
+import Graduation from '../assets/Graduation.JPG';
 import im_done from '../assets/im_done.png';
 
 // Optional images (uncomment when ready):
