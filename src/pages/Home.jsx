@@ -9,7 +9,7 @@ import '../styles/layout/grid.css';  // Make sure this is imported
 import '../styles/components/Header.css';
 import '../styles/components/Hero.css';
 import '../styles/components/Cards.css';
-import '../styles/components/Timeline.css';
+import '../styles/components/TimeLine.css';
 import '../styles/components/Forms.css';
 import '../styles/utilities/responsive.css';
 
