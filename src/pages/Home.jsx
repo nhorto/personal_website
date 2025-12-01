@@ -1,6 +1,8 @@
 // src/pages/Home.jsx - FINAL FIXED VERSION
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SiPython, SiJavascript, SiEsri, SiScikitlearn } from 'react-icons/si';
+import { getFeaturedProjects } from '../data/projectsData';
 
 // Import CSS files
 import '../styles/globals.css';
@@ -23,7 +25,7 @@ const SkillsMatrix = () => {
     'Languages': ['Python', 'JavaScript', 'R', 'SQL', 'Julia'],
     'ML/AI': ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy'],
     'GIS/Spatial': ['ArcGIS', 'QGIS', 'Leaflet', 'Geopandas', 'Shapely'],
-    'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React, Next.js']
+    'Visualization': ['Tableau', 'D3.js', 'Plotly', 'Matplotlib', 'React', 'Next.js']
   };
 
   return (
@@ -80,12 +82,37 @@ const SkillCard = ({ title, subtitle, icon }) => {
   );
 };
 
-const ProjectCard = ({ title, description, tech }) => (
-  <div className="card project-card reveal">
-    <h3 style={{ color: 'var(--accent)', marginTop: 0 }}>{title}</h3>
-    <p style={{ color: '#d7e0ea' }}>{description}</p>
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-      {tech.map((t, i) => <span key={i} className="tech-tag">{t}</span>)}
+const ProjectCard = ({ project, onClick }) => (
+  <div
+    className="card project-card reveal"
+    style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
+    onClick={onClick}
+    onMouseOver={(e) => {
+      e.currentTarget.style.transform = 'translateY(-8px)';
+      e.currentTarget.style.borderColor = 'var(--accent)';
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.borderColor = 'var(--border)';
+    }}
+  >
+    <h3 style={{ color: 'var(--accent)', marginTop: 0 }}>{project.title}</h3>
+    <p style={{ color: '#d7e0ea', marginBottom: '1rem' }}>{project.shortDescription}</p>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
+      {project.categories.map((cat, i) => <span key={i} className="tech-tag">{cat}</span>)}
+    </div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+      {project.technologies.slice(0, 5).map((tech, i) => (
+        <span key={i} style={{
+          fontSize: '0.75rem',
+          color: 'var(--muted)',
+          background: 'rgba(123,175,212,0.1)',
+          padding: '0.25rem 0.5rem',
+          borderRadius: '4px'
+        }}>
+          {tech}
+        </span>
+      ))}
     </div>
   </div>
 );
@@ -225,6 +252,8 @@ const ContactForm = () => {
 };
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const skills = [
     { title: 'Machine Learning', subtitle: 'Predictive modeling & AI systems', icon: <SiScikitlearn size={70}/> },
     { title: 'Python Development', subtitle: 'Data Science, automation & scripting', icon: <SiPython size={70}/> },
@@ -233,21 +262,17 @@ export default function Home() {
   ];
 
   const specializations = [
-    { 
+    {
       title: 'Data Science Specializations',
       items: ['Predictive Analytics', 'Statistical Modeling', 'Time Series Analysis', 'Exploratory Data Analysis ', 'Feature Engineering', 'Data cleaning & Preprocessing', 'Deep Learning']
     },
-    { 
-      title: 'Geospatial Expertise', 
+    {
+      title: 'Geospatial Expertise',
       items: ['Remote Sensing', 'Spatial Statistics', 'Cartographic Design', 'Location Intelligence', 'Spatio-temporal modeling','Spatio-temporal forecasting']
     }
   ];
 
-  const projects = [
-    { title: 'AI-Powered Data Analytics Platform', description: 'Automated analysis/visualization with ML for insights.', tech: ['Python', 'TensorFlow', 'React', 'Flask', 'Postgres'] },
-    { title: 'Real-time Recommendation Engine', description: 'Collaborative filtering + DL for real-time personalization.', tech: ['Python', 'PyTorch', 'Redis', 'Docker', 'AWS'] },
-    { title: 'MLOps Pipeline Automation', description: 'E2E training, validation, deploy, monitoring.', tech: ['Kubernetes', 'MLflow', 'Airflow', 'Terraform'] },
-  ];
+  const featuredProjects = getFeaturedProjects();
 
   const experience = [
     {
@@ -408,8 +433,29 @@ export default function Home() {
       {/* ===== Projects ===== */}
       <section className="section" id="projects">
         <h2 className="section-title reveal">Featured Projects</h2>
+        <p className="reveal" style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '2rem' }}>
+          Showcasing my latest work in data science and machine learning
+        </p>
         <div className="grid-projects">
-          {projects.map((p, i) => <ProjectCard key={i} {...p} />)}
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => navigate(`/projects/${project.slug}`)}
+            />
+          ))}
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <button
+            onClick={() => navigate('/Projects')}
+            className="form-button"
+            style={{
+              maxWidth: '300px',
+              margin: '0 auto'
+            }}
+          >
+            View All Projects
+          </button>
         </div>
       </section>
 

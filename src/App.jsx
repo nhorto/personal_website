@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 
 function NotFound() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="About" element={<About />} />
         <Route path="Projects" element={<Projects />} />
+        <Route path="projects/:slug" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

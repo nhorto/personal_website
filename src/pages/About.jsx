@@ -51,10 +51,12 @@ const styles = {
     textAlign: 'center',
   },
   image: {
-    width: '100%',
+    width: '90%',
+    maxWidth: 520,
     height: 'auto',
     borderRadius: 12,
     border: '1px solid var(--border)',
+    margin: '0 auto',
   },
   figcaption: {
     color: 'var(--muted)',
