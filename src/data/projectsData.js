@@ -7,20 +7,24 @@ export const projectsData = [
     title: 'NBA Game Prediction',
     slug: 'nba-prediction',
     shortDescription: 'Machine learning system that predicts NBA game outcomes using historical data, advanced statistics, and ELO ratings.',
-    fullDescription: `This machine learning project predicts NBA game outcomes by analyzing historical game data, advanced statistics, and ELO ratings. The system achieves approximately 69% accuracy, significantly outperforming baseline prediction methods.
+    fullDescription: `Basketball is one of my passions and this has been a really fun project to work on. 
+    I built a ensemble that predicts NBA game outcomes using historical results, advanced statistics, 
+    and used the ELO rating model (I have a description of what the ELO ratings are on GitHub). The current version hits around 69% accuracy, clearly beating the baselines 
+    and giving a realistic sense of how far you can push this kind of problem with careful feature engineering.
+    Behind the scenes, I wrote an NBA API wrapper with automatic retry logic and rate limiting, plus a data pipeline that turns 
+    raw box scores into model-ready features. The system tracks team strength over time using ELO, adds context like home-court 
+    advantage, how good or bad a team is playing (rolling 5-game windows), and even accounts for player availability.
 
-The project features a custom NBA API wrapper with automatic retry logic and rate limiting, a sophisticated data preprocessing pipeline that transforms raw box scores into ML-ready features, and an ELO rating system that dynamically tracks team strength over time.
-
-Key innovations include home court advantage modeling, rolling averages using a 5-game window, and player availability tracking. Multiple models were tested, with Logistic Regression achieving the best single-model performance at 66% accuracy, compared to a baseline of 57.2%.`,
+This is an ongoing project that I revisit when I have time — the latest experiments and model comparisons are in the game_predictions notebook on GitHub`,
     categories: ['Machine Learning', 'Sports Analytics', 'Predictive Modeling', 'Python'],
     technologies: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'NBA API'],
     githubUrl: 'https://github.com/nhorto/NBA',
     featured: true,
     image: '/placeholder-nba.svg', // Update with actual image path
     achievements: [
-      '69% prediction accuracy',
-      'Custom ELO rating system implementation',
-      'Outperformed baseline by 12%'
+      'Increased prediction accuracy to ~69%, outperforming a baseline model by ~12 percentage points',
+      'Implemented an ensemble learning approach that consistently outperformed standalone models in predictive accuracy.',
+      'Built a robust NBA data pipeline with API rate limiting, retries, and feature engineering'
     ]
   },
   {
@@ -28,20 +32,17 @@ Key innovations include home court advantage modeling, rolling averages using a 
     title: 'Solar Power Forecasting',
     slug: 'solar-forecasting',
     shortDescription: 'Ensemble ML system that predicts photovoltaic power generation three hours in advance using XGBoost and LSTM models.',
-    fullDescription: `This capstone project develops a sophisticated machine learning ensemble system for predicting photovoltaic power generation three hours in advance using data from three solar inverters.
-
-The system combines XGBoost gradient boosting and LSTM neural networks through an ensemble blending approach using Ridge regression. The data pipeline handles minute-level inverter readings, weather measurements, and performs comprehensive preprocessing including outlier detection, gap management, and feature engineering.
-
-Advanced features include lagged power values, rolling statistics, rate-of-change metrics, cyclic time encodings, and sunrise/sunset proximity indicators. The LSTM architecture uses two layers (128 and 64 units) with dropout regularization, while XGBoost employs 300 estimators with optimized hyperparameters.`,
+    fullDescription: `For my Master’s in Data Science capstone, I partnered with an energy-tech startup to develop a short-term solar power forecasting system. I worked directly with the stakeholder to define requirements, translate research into modeling decisions, and deliver a solution designed for real operational workflows.
+Using minute-level inverter and weather data, I built a full preprocessing pipeline to handle missing values, outliers, resampling, and feature engineering (lags, rolling statistics, and time-based signals). To maximize forecasting accuracy, I designed a multi-model ensemble that combines an LSTM, an XGBoost model, a Ridge blending meta-model, and a residual-correction model. This architecture captures both short-term temporal patterns and broader nonlinear trends, outperforming each individual model.`,
     categories: ['Machine Learning', 'Deep Learning', 'Time Series', 'Energy Forecasting'],
     technologies: ['Python', 'XGBoost', 'LSTM', 'TensorFlow', 'Pandas', 'NumPy'],
     githubUrl: 'https://github.com/nhorto/Capstone',
     featured: true,
     image: '/placeholder-solar.svg', // Update with actual image path
     achievements: [
-      'Ensemble model combining XGBoost and LSTM',
-      '3-hour ahead forecasting capability',
-      'Real-time data processing pipeline'
+      'Developed a hybrid forecasting system combining LSTM, XGBoost, Ridge blending, and a residual-correction model.',
+      'Engineered a minute-level data pipeline handling outliers, gaps, and multiple sensor streams',
+      'Collaborated directly with a startup stakeholder, converting business requirements into a deployable forecasting solution.'
     ]
   },
   {
@@ -49,20 +50,20 @@ Advanced features include lagged power values, rolling statistics, rate-of-chang
     title: 'School Funding & Poverty Analysis',
     slug: 'poverty-education-viz',
     shortDescription: 'Interactive D3.js dashboard exploring the correlation between educational funding and student poverty across U.S. school districts.',
-    fullDescription: `This interactive data visualization project explores the correlation between educational funding and student poverty across U.S. school districts, introducing the Poverty Sensitivity Index (PSI) as a novel measurement tool.
+    fullDescription: `This project explores how well school funding keeps up with student poverty across U.S. districts using an interactive D3.js dashboard. To make the problem more concrete, I introduced the Poverty Sensitivity Index (PSI): revenue per student divided by poverty rate, which helps highlight districts that stretch their dollars versus those that may be under-serving higher-poverty students.
 
-The PSI metric (Revenue per Student ÷ Poverty Rate) helps identify districts that effectively allocate resources relative to their poverty levels. The dashboard features an interactive choropleth map, drill-down district views, comparison charts, and scatter plots revealing the revenue-to-poverty relationship.
+The dashboard includes an interactive choropleth map, drill-down district views, and comparison charts that make it easy to spot regional patterns and outliers. Users can move from a national overview down to specific districts and see how funding and poverty interact.
 
-The data pipeline integrates multiple sources including the Urban Institute Education Data API for 2020 school finance metrics, SAIPE poverty estimates, and Census Bureau district boundaries. The analysis reveals significant regional variations in funding equity, with the PSI helping identify areas where funding formulas may inadequately address poverty.`,
+Under the hood, the project pulls together multiple public datasets, including the Urban Institute Education Data API, SAIPE poverty estimates, and Census Bureau district boundaries. The end result is a tool that’s approachable for non-technical users but still grounded in solid data work.`,
     categories: ['Data Visualization', 'Geospatial Analysis', 'D3.js', 'Public Policy'],
     technologies: ['Python', 'D3.js', 'GeoPandas', 'Pandas', 'GeoJSON', 'JavaScript'],
     githubUrl: 'https://github.com/nhorto/Data-Viz-PSI',
     featured: false,
     image: '/placeholder-education.svg', // Update with actual image path
     achievements: [
-      'Created novel Poverty Sensitivity Index (PSI) metric',
-      'Interactive multi-level geographic visualization',
-      'Integrated multiple federal data sources'
+      'Communicated findings through a clear visual narrative, highlighting equity gaps and regional disparities in how funding responds to student need.',
+      'Built an interactive D3.js dashboard with map, drill-down, and comparison views.',
+      'Integrated and cleaned multiple public datasets (Urban Institute API, SAIPE, and Census shapefiles) into a unified geospatial data model for analysis and visualization.'
     ]
   },
   {
@@ -70,11 +71,8 @@ The data pipeline integrates multiple sources including the Urban Institute Educ
     title: 'Hotel Analysis with NLP',
     slug: 'hotel-nlp-analysis',
     shortDescription: 'Natural language processing system analyzing Italian hotels through topic modeling and sentiment analysis of guest reviews.',
-    fullDescription: `This machine learning project evaluates Italian hotels through multiple analytical lenses, combining geographic data collection with natural language processing to assess accommodations across several dimensions.
-
-The system gathers hotel information via Google Places API and calculates location scores using the Haversine formula to measure proximity to major attractions. The NLP pipeline applies Latent Dirichlet Allocation (LDA) for topic discovery and VADER for sentiment analysis across guest reviews.
-
-Hotels receive proximity ratings based on landmark distance, with scores ranging from 0.5 to 2 points depending on distance bands. The framework supports hotel ranking systems, competitive benchmarking, and service enhancement identification based on review analysis patterns.`,
+    fullDescription: `This project analyzes hotels across major Italian cities by combining geographic data, NLP, and machine learning to evaluate location quality and customer experience. I built a full data pipeline that collects hotel and landmark information using the Google Places API, computes proximity-based location scores, and performs topic modeling (LDA) and sentiment analysis (VADER) on thousands of hotel reviews.
+The analysis produces a multi-dimensional profile for each hotel — capturing its geographic advantage, dominant review themes, and customer sentiment — enabling richer comparisons than ratings alone. The system is fully reproducible and scalable to all major Italian cities.`,
     categories: ['Machine Learning', 'NLP', 'Sentiment Analysis', 'Topic Modeling'],
     technologies: ['Python', 'Scikit-learn', 'spaCy', 'Gensim', 'NLTK', 'Google Places API'],
     githubUrl: 'https://github.com/nhorto/ML-Final-Project',
@@ -90,21 +88,18 @@ Hotels receive proximity ratings based on landmark distance, with scores ranging
     id: 'cork-and-note',
     title: 'Cork & Note',
     slug: 'cork-and-note',
-    shortDescription: 'Cross-platform mobile application built with Expo and React Native for wine enthusiasts.',
-    fullDescription: `Cork & Note is a cross-platform mobile application developed using Expo and React Native, designed to run seamlessly on Android, iOS, and web platforms.
-
-The app implements file-based routing for efficient navigation and follows modern React Native best practices. Built with the Expo ecosystem, it leverages the latest development tools and libraries for rapid iteration and deployment.
-
-The project demonstrates proficiency in mobile development, cross-platform architecture, and modern JavaScript frameworks. The application is designed with scalability in mind, allowing for easy feature additions and modifications.`,
-    categories: ['Mobile Development', 'React Native', 'Expo', 'Full-Stack'],
+    shortDescription: 'A cross-platform wine-tracking app built with React Native and Expo.',
+    fullDescription: `Cork & Note is a mobile app I built for myself and my girlfriend to track the wineries we visit in Virginia and the wines we try at each one. I started the project right after finishing my data science master’s program, with almost no frontend or React Native experience, and used it as a way to learn mobile development while creating something meaningful to us.
+The app is built with React Native and Expo, which allowed me to ship it quickly on iOS, Android, and the web from a single codebase. It includes features for logging winery visits, rating wines, and keeping notes so we can look back on what we enjoyed.`,
+    categories: ['Mobile Development', 'React Native', 'Expo', 'Frontend'],
     technologies: ['React Native', 'Expo', 'JavaScript', 'Node.js'],
     githubUrl: 'https://github.com/nhorto/cork-and-note',
     featured: true,
     image: '/placeholder-mobile.svg', // Update with actual image path
     achievements: [
-      'Cross-platform mobile application',
-      'File-based routing implementation',
-      'Modern React Native architecture'
+      'Built a cross-platform mobile app (iOS, Android, Web) using React Native and Expo.',
+      'Designed a smooth UI for logging winery visits, rating wines, and saving tasting notes.',
+      'Learned frontend development from scratch by building a real, end-to-end product.'
     ]
   }
 ];
