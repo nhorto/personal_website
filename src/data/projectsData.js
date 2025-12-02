@@ -54,10 +54,11 @@ Using minute-level inverter and weather data, I built a full preprocessing pipel
 
 The dashboard includes an interactive choropleth map, drill-down district views, and comparison charts that make it easy to spot regional patterns and outliers. Users can move from a national overview down to specific districts and see how funding and poverty interact.
 
-Under the hood, the project pulls together multiple public datasets, including the Urban Institute Education Data API, SAIPE poverty estimates, and Census Bureau district boundaries. The end result is a tool that’s approachable for non-technical users but still grounded in solid data work.`,
+Under the hood, the project pulls together multiple public datasets, including the Urban Institute Education Data API, SAIPE poverty estimates, and Census Bureau district boundaries. The end result is a tool that's approachable for non-technical users but still grounded in solid data work.`,
     categories: ['Data Visualization', 'Geospatial Analysis', 'D3.js', 'Public Policy'],
     technologies: ['Python', 'D3.js', 'GeoPandas', 'Pandas', 'GeoJSON', 'JavaScript'],
     githubUrl: 'https://github.com/nhorto/Data-Viz-PSI',
+    demoUrl: 'https://data-viz-psi.vercel.app',
     featured: false,
     image: '/placeholder-education.svg', // Update with actual image path
     achievements: [
@@ -89,11 +90,15 @@ The analysis produces a multi-dimensional profile for each hotel — capturing i
     title: 'Cork & Note',
     slug: 'cork-and-note',
     shortDescription: 'A cross-platform wine-tracking app built with React Native and Expo.',
-    fullDescription: `Cork & Note is a mobile app I built for myself and my girlfriend to track the wineries we visit in Virginia and the wines we try at each one. I started the project right after finishing my data science master’s program, with almost no frontend or React Native experience, and used it as a way to learn mobile development while creating something meaningful to us.
-The app is built with React Native and Expo, which allowed me to ship it quickly on iOS, Android, and the web from a single codebase. It includes features for logging winery visits, rating wines, and keeping notes so we can look back on what we enjoyed.`,
+    fullDescription: `Cork & Note is a mobile app I built for myself and my girlfriend to track the wineries we visit in Virginia and the wines we try at each one. I started the project right after finishing my data science master's program, with almost no frontend or React Native experience, and used it as a way to learn mobile development while creating something meaningful to us.
+The app is built with React Native and Expo, which allowed me to ship it quickly on iOS, Android, and the web from a single codebase. It includes features for logging winery visits, rating wines, and keeping notes so we can look back on what we enjoyed.
+
+Feel free to check out the web-app version to see what the app is like. It’s mainly built for mobile, so the web version has a few rough edges, but it should give you a good idea of the design and functionality. There is a login screen, 
+but it’s only a placeholder. You can enter anything for the email address and password and still log in—it’s just there to show the flow.`,
     categories: ['Mobile Development', 'React Native', 'Expo', 'Frontend'],
     technologies: ['React Native', 'Expo', 'JavaScript', 'Node.js'],
     githubUrl: 'https://github.com/nhorto/cork-and-note',
+    demoUrl: 'https://cork-and-note-sigma.vercel.app',
     featured: true,
     image: '/placeholder-mobile.svg', // Update with actual image path
     achievements: [

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProjectBySlug } from '../data/projectsData';
-import { FaGithub, FaArrowLeft } from 'react-icons/fa';
+import { FaGithub, FaArrowLeft, FaExternalLinkAlt } from 'react-icons/fa';
 
 // Import styles
 import '../styles/globals.css';
@@ -67,23 +67,42 @@ export default function ProjectDetail() {
             ))}
           </div>
 
-          {/* GitHub Button */}
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="form-button"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              textDecoration: 'none',
-              width: 'auto',
-              marginBottom: '2rem'
-            }}
-          >
-            <FaGithub size={20} /> View on GitHub
-          </a>
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="form-button"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                textDecoration: 'none',
+                width: 'auto'
+              }}
+            >
+              <FaGithub size={20} /> View on GitHub
+            </a>
+
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="form-button"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  textDecoration: 'none',
+                  width: 'auto'
+                }}
+              >
+                <FaExternalLinkAlt size={18} /> Live Demo
+              </a>
+            )}
+          </div>
 
           {/* Divider */}
           <hr style={{
